@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hozzáadás</title>
+      <link type="text/css" rel="stylesheet" href="css/headers.css"/>
+      <link type="text/css" rel="stylesheet" href="css/drawer.css"/>
+      <link type="text/css" rel="stylesheet" href="css/lists.css"/>
+      <link type="text/css" rel="stylesheet" href="css/app.css"/>
+      <link type="text/css" rel="stylesheet" href="css/buttons.css"/>
+      <link type="text/css" rel="stylesheet" href="css/input_areas.css"/>
+    <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
+         so we use a script file. -->
+    <script type="text/javascript" src="script/Hozzaadas.js"></script>
+  </head>
+  <body>
+      <section role="region">
+            <header>
+                <menu type="toolbar">
+                    <a href="index.html"><span class="icon icon-back">back</span></a>
+                </menu>
+                <h1>Könyv hozzáadása</h1>
+            </header>
+            <div>
+                <input id="szerzo" type="text" placeholder="Szerző" value="" />
+                <input id="cim" type="text" placeholder="Cím" value="" />
+                <input id="megjegyzes" type="text" placeholder="Megjegyzés..." value="" />
+                <button id="Felvitel" class="recommend">Felvitel</button>
+            </div>
+        </section>
+  </body>
+</html>
