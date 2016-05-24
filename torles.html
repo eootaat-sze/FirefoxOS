@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Könyvlista</title>
+      <link type="text/css" rel="stylesheet" href="css/headers.css"/>
+      <link type="text/css" rel="stylesheet" href="css/drawer.css"/>
+      <link type="text/css" rel="stylesheet" href="css/lists.css"/>
+      <link type="text/css" rel="stylesheet" href="css/app.css"/>
+    <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
+         so we use a script file. -->
+    <script src="script/Torles.js"></script>
+  </head>
+  <body>
+      <div>
+        <section role="region">
+            <header>
+                <menu type="toolbar">
+                    <a href="index.html"><span class="icon icon-back">back</span></a>
+                </menu>
+                <h1>Könyv törlése</h1>
+            </header>
+            <div>
+                <section data-type="list">
+                    <!--
+                    <ul id="konyvlista" style="height: 450px"></ul>
+                    -->
+                    <ul id="konyvlista"></ul>
+                </section>
+            </div>
+        </section>
+      </div>
+  </body>
+</html>

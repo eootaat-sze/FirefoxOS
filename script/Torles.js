@@ -1,30 +1,39 @@
-var Konyv = function(szerzo, cim, megjegyzes) {
-    this.szerzo = szerzo;
-    this.cim = cim;
-    this.megjegyzes = megjegyzes;
+function torles(deleteKey) {
+    console.log("deleteKey: " + deleteKey);
+    var connection = window.indexedDB.open("Konyv", 1);
+
+    connection.onsuccess = function(event) {
+        var db = event.target.result;
+        var transaction = db.transaction("Konyv", "readwrite");
+
+        transaction.oncomplete = function() {
+            db.close();
+        };
+
+        transaction.onerror = function(event) {
+            alert("Adatbázis hiba!");
+            console.log("Database error: " + event.target.errorCode);
+        };
+
+        var torlesTransaction = transaction.objectStore("Konyv");
+        var torles = torlesTransaction.delete(deleteKey);
+
+        torles.onsuccess = function() {
+            alert("Sikeresen törlés!");
+            window.location.href = "torles.html";
+        };
+
+        torles.onerror = function(event) {
+            alert("Adatbázis hiba!");
+            console.log("Database error: " + event.target.errorCode);
+        };
+    };
+
+    connection.onerror = function(event) {
+        alert("Adatbázis hiba!");
+        console.log("Database error: " + event.target.errorCode);
+    };
 };
-
-/*
-function demoAdatok() {
-    var lista = document.getElementById("konyvlista");
-    var daVinci = new Konyv("Dan Brown", "Da Vinci Kód", "Még nem olvastam...");
-    var shining = new Konyv("Stephen King", "Ragyogás", "Ezt már olvastam");
-    var li = document.createElement("li");
-    li.innerHTML = "<p>" + daVinci.cim + "</p><p>" + daVinci.szerzo + "</p>";
-    li.addEventListener("click", function() {
-        alert(daVinci.szerzo + "\n" + daVinci.cim + "\n" + daVinci.megjegyzes);
-    });
-
-    lista.appendChild(li);
-    li = document.createElement("li");
-    li.innerHTML = "<p>" + shining.cim + "</p><p>" + shining.szerzo + "</p>";
-    li.addEventListener("click", function() {
-        alert(shining.szerzo + "\n" + shining.cim + "\n" + shining.megjegyzes);
-    });
-
-    lista.appendChild(li);
-}
-*/
 
 function konyvListazas() {
     console.log("konyvListazas");
@@ -50,20 +59,17 @@ function konyvListazas() {
             var lista = document.getElementById("konyvlista");
             if (cursor) {
                 var li = document.createElement("li");
+                var ID = cursor.value.Id;
                 var szerzo = cursor.value.szerzo;
                 var cim = cursor.value.cim;
                 var megjegyzes = cursor.value.megjegyzes;
-                var olvasott = cursor.value.olvasva;
-                if (olvasott) {
-                    olvasott = "Igen";
-                } else {
-                    olvasott = "Nem";
-                }
                 li.innerHTML = "<p>" + cim + "</p><p>" + szerzo + "</p>";
-                console.log("cursor.value.cim " + cursor.value.cim);
-                console.log("olvasott könyv? " + olvasott);
                 li.addEventListener("click", function() {
-                    alert("Szerző: " + szerzo + "\nCím: " + cim + "\nMegjegyzés: " + megjegyzes + "\nOlvastam? " + olvasott);
+                    var ret = confirm("Töröljük a könyvet?");
+                    if (ret) {
+                        //A user az "OK"-ra klikkelt, ezért töröljük a könyvet.
+                        torles(ID);
+                    }
                 });
                 
                 lista.appendChild(li);

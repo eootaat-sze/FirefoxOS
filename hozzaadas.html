@@ -4,15 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hozzáadás</title>
-      <link type="text/css" rel="stylesheet" href="css/headers.css"/>
-      <link type="text/css" rel="stylesheet" href="css/drawer.css"/>
-      <link type="text/css" rel="stylesheet" href="css/lists.css"/>
-      <link type="text/css" rel="stylesheet" href="css/app.css"/>
-      <link type="text/css" rel="stylesheet" href="css/buttons.css"/>
-      <link type="text/css" rel="stylesheet" href="css/input_areas.css"/>
+    <link type="text/css" rel="stylesheet" href="css/headers.css"/>
+    <link type="text/css" rel="stylesheet" href="css/drawer.css"/>
+    <link type="text/css" rel="stylesheet" href="css/lists.css"/>
+    <link type="text/css" rel="stylesheet" href="css/app.css"/>
+    <link type="text/css" rel="stylesheet" href="css/buttons.css"/>
+    <link type="text/css" rel="stylesheet" href="css/input_areas.css"/>
+    <link type="text/css" rel="stylesheet" href="css/switches.css"/>
     <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
-         so we use a script file. -->
+    so we use a script file. -->
     <script type="text/javascript" src="script/Hozzaadas.js"></script>
+    <style type="text/css">
+        #olvasott {
+            color: #a9a9a9;
+            opacity: 1;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 100px;
+            margin-left: 20px;
+        }  
+    </style>  
   </head>
   <body>
       <section role="region">
@@ -26,6 +39,11 @@
                 <input id="szerzo" type="text" placeholder="Szerző" value="" />
                 <input id="cim" type="text" placeholder="Cím" value="" />
                 <input id="megjegyzes" type="text" placeholder="Megjegyzés..." value="" />
+                <label id="olvasott">Olvastad a könyvet?</label>
+                <label class="pack-switch">
+                    <input id="olvasva" type="checkbox">
+                    <span></span>
+                </label>
                 <button id="Felvitel" class="recommend">Felvitel</button>
             </div>
         </section>

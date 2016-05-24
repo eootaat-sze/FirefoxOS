@@ -1,7 +1,8 @@
 window.onload = function() {
     document.getElementById("Felvitel").addEventListener('click', function() {
         var connection = window.indexedDB.open("Konyv", 1);
-
+        console.log(document.getElementById("olvasva").checked);
+        
         connection.onsuccess = function(event) {
             console.log("Siker!");
             var db = event.target.result;
@@ -17,13 +18,14 @@ window.onload = function() {
             };
 
             var hozzaadasTransaction = transaction.objectStore("Konyv");
-            var hozzaadas = hozzaadasTransaction.add({szerzo: document.getElementById("szerzo").value, cim: document.getElementById("cim").value, megjegyzes: document.getElementById("megjegyzes").value});
+            var hozzaadas = hozzaadasTransaction.add({szerzo: document.getElementById("szerzo").value, cim: document.getElementById("cim").value, megjegyzes: document.getElementById("megjegyzes").value, olvasva: document.getElementById("olvasva").checked});
 
             hozzaadas.onsuccess = function() {
                 alert("Sikeresen hozzáadás!");
+                window.location.href = "index.html";
             };
 
-            hozzadas.onerror = function(event) {
+            hozzaadas.onerror = function(event) {
                 alert("Adatbázis hiba!");
                 console.log("Database error: " + event.target.errorCode);
             };
